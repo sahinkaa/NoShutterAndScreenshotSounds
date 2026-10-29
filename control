@@ -1,0 +1,9 @@
+Package: com.sahinkaa.noshutterscreenshotsounds
+Name: No Shutter & Screenshot Sounds
+Version: 1.0
+Architecture: iphoneos-arm64e
+Description: Silence camera shutter and screenshot sounds regardless of the ringer switch.
+Author: sahinkaa
+Maintainer: sahinkaa
+Section: Tweaks
+Depends: firmware (>= 15.0), mobilesubstrate, preferenceloader
