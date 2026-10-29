@@ -54,4 +54,4 @@ On RootHide, use the corresponding directory inside the current `.jbroot`. On st
 
 Settings use `com.sahinkaa.noshutterscreenshotsounds.plist` under the same environment's `/var/mobile/Library/Preferences`. Saves preserve other keys, use atomic writes and keep a backup before changing an existing file. Malformed settings are preserved and normal playback is allowed.
 
-See [BUILD.md](BUILD.md) for compilation, [TESTING.md](TESTING.md) for the pending iOS 16 check and [RESEARCH.md](RESEARCH.md) for implementation details.
+See [BUILD.md](BUILD.md) for compilation, [TESTING.md](TESTING.md) for a device verification checklist and [RESEARCH.md](RESEARCH.md) for implementation details.
