@@ -30,8 +30,11 @@ static void (*NSCOriginalAlert)(SystemSoundID);
 static void (*NSCOriginalAlertCompletion)(SystemSoundID,void (^)(void));
 static void (*NSCOriginalScreenshot)(id,SEL);
 static uint32_t (*NSCOriginalPhotoSound)(id,SEL);
+#if defined(NSC_HOST_TEST)
 static NSMutableDictionary *NSCReport;
+#endif
 
+#if defined(NSC_HOST_TEST)
 static void NSCRecord(NSString *key,id value) {
     if (!NSThread.isMainThread) { dispatch_async(dispatch_get_main_queue(),^{NSCRecord(key,value);});return; }
     if (!NSCReport) NSCReport=[NSMutableDictionary new];
@@ -42,6 +45,10 @@ static void NSCRecord(NSString *key,id value) {
     [NSFileManager.defaultManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
     [NSCReport writeToFile:[dir stringByAppendingPathComponent:[NSString stringWithFormat:@"NoCaptureSounds-%@.plist",bundle]] atomically:YES];
 }
+#else
+static inline __attribute__((unused)) void NSCRecord(NSString *key, id value) { (void)key; (void)value; }
+#define NSCRecord(...) ((void)sizeof((NSCRecord(__VA_ARGS__), 0)))
+#endif
 static BOOL NSCEnabled(void) { return NSCEnabledAtPath(NSCPath(NSCPreferenceFile)); }
 static BOOL NSCIsCameraProcess(void) {
 #ifdef NSC_HOST_TEST
